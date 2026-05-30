@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --muted: 210 7% 90%;
+    --muted-foreground: 215.4 12.4% 43.5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --primary: 15 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 7% 90%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --accent: 15 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 15 85% 55%;
+  }
+
+  .dark {
+    --background: 222.2 47.4% 11.2%;
+    --foreground: 0 0% 100%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 0 0% 100%;
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 0 0% 100%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --primary: 15 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 15 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 15 85% 55%;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
