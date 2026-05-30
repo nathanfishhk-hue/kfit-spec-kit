@@ -1,30 +1,38 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { supabase } from '@/lib/supabase/client'
 import { motion } from 'framer-motion'
 
 export default function AuthPage() {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) router.push('/dashboard')
-    })
-  }, [router])
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    if (!error) router.push('/dashboard')
+    setLoading(false)
+  }
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    const { error } = await supabase.auth.signUp({ email, password })
+    setLoading(false)
+  }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-kfit-900/20 via-black to-black z-0" />
-      
+    <div className="min-h-screen bg-black flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-md p-8"
+        className="w-full max-w-md p-8"
       >
         <div className="text-center mb-8">
           <h1 className="text-5xl font-display font-bold text-white mb-2">
@@ -33,23 +41,40 @@ export default function AuthPage() {
           <p className="text-gray-400">Transform Here. Thrive Everywhere.</p>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm border border-kfit-700 rounded-2xl p-6">
-          <Auth
-            supabaseClient={supabase}
-            providers={[]}
-            appearance={{
-              theme: ThemeSupa,
-              variables: {
-                default: {
-                  colors: {
-                    brand: '#f97316',
-                    brandAccent: '#ea580c',
-                  },
-                },
-              },
-            }}
+        <form onSubmit={handleLogin} className="bg-white/5 border border-kfit-700 rounded-2xl p-6 space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 bg-black/30 border border-kfit-600 rounded-lg text-white"
+            required
           />
-        </div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 bg-black/30 border border-kfit-600 rounded-lg text-white"
+            required
+          />
+          <div className="flex gap-3">
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-1 py-3 bg-kfit-600 text-white rounded-lg"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleSignup}
+              disabled={loading}
+              className="flex-1 py-3 border border-kfit-600 text-kfit-500 rounded-lg"
+            >
+              Sign Up
+            </button>
+          </div>
+        </form>
       </motion.div>
     </div>
   )

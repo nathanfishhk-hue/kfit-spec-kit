@@ -12,9 +12,11 @@ out/
 # local env
 .env.local
 .env.*.local
+.env.*.local
 
 # vercel
 .vercel
 
 # types
 *.tsbuildinfo
+.vercel
