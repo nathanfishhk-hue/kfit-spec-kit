@@ -27,27 +27,27 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md p-8"
+        className="w-full max-w-md"
       >
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-display font-bold text-white mb-2">
-            WELCOME TO <span className="text-kfit-500">KFIT</span>
+        <div className="text-center mb-12">
+          <h1 className="text-7xl font-black text-white mb-4">
+            WELCOME TO <span className="text-orange-500">KFIT</span>
           </h1>
-          <p className="text-gray-400">Transform Here. Thrive Everywhere.</p>
+          <p className="text-white/60">Transform Here. Thrive Everywhere.</p>
         </div>
 
-        <form onSubmit={handleLogin} className="bg-white/5 border border-kfit-700 rounded-2xl p-6 space-y-4">
+        <form onSubmit={handleLogin} className="bg-gradient-to-b from-zinc-900 to-black border-2 border-orange-700/30 rounded-3xl p-10 space-y-6">
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 bg-black/30 border border-kfit-600 rounded-lg text-white"
+            className="w-full p-4 bg-black/50 border-2 border-orange-700/30 rounded-xl text-white placeholder-white/40"
             required
           />
           <input
@@ -55,23 +55,24 @@ export default function AuthPage() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 bg-black/30 border border-kfit-600 rounded-lg text-white"
+            className="w-full p-4 bg-black/50 border-2 border-orange-700/30 rounded-xl text-white placeholder-white/40"
             required
           />
-          <div className="flex gap-3">
+          <div className="flex gap-4 pt-4">
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 py-3 bg-kfit-600 text-white rounded-lg"
+              className="flex-1 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white font-black rounded-full"
             >
-              Login
+              LOGIN
             </button>
             <button
+              type="button"
               onClick={handleSignup}
               disabled={loading}
-              className="flex-1 py-3 border border-kfit-600 text-kfit-500 rounded-lg"
+              className="flex-1 py-4 border-2 border-orange-600 text-orange-500 font-black rounded-full"
             >
-              Sign Up
+              SIGN UP
             </button>
           </div>
         </form>
